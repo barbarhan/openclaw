@@ -601,7 +601,12 @@ describe("main-session-restart-recovery", () => {
     ]);
   });
 
-  it.each([
+  it.each<{
+    name: string;
+    identities: string[][];
+    expected: string[];
+    release?: boolean;
+  }>([
     { name: "paired channel turn", identities: [["main", "session-main"]], expected: ["main"] },
     { name: "key-only channel turn", identities: [["main"]], expected: ["main"] },
     { name: "ID-only turn", identities: [["session-main"]], expected: ["main", "stale"] },
